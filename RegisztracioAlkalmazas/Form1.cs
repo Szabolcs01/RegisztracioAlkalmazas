@@ -21,5 +21,27 @@ namespace RegisztracioAlkalmazas
         {
 
         }
+   
+private void btnHozzaad_Click(object sender, EventArgs e)
+        {
+            string hobbi = textBoxHobbi.Text;
+            if (String.IsNullOrWhiteSpace(hobbi))
+            {
+                MessageBox.Show("Nincs semmi meg adva");
+                textBoxHobbi.Text = " ";
+                textBoxHobbi.Focus();
+                return;
+            }
+            if (listBoxLista.Items.Contains(hobbi))
+            {
+                MessageBox.Show("Ez már szerepel!");
+                textBoxHobbi.Text = "";
+                textBoxHobbi.Focus();
+                return;
+            }
+           listBoxLista.Items.Add(hobbi.TrimStart().TrimEnd());
+            textBoxHobbi.Text = " ";
+            textBoxHobbi.Focus();
+        }
     }
 }

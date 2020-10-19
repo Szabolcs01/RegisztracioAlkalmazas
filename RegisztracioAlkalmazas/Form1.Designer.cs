@@ -61,6 +61,7 @@
             this.btnHozzaad.TabIndex = 1;
             this.btnHozzaad.Text = "Hozzáad";
             this.btnHozzaad.UseVisualStyleBackColor = true;
+            this.btnHozzaad.Click += new System.EventHandler(this.btnHozzaad_Click);
             // 
             // btnMentes
             // 
