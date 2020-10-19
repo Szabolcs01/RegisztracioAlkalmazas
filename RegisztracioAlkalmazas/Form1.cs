@@ -92,5 +92,76 @@ private void btnHozzaad_Click(object sender, EventArgs e)
             }
         }
 
+        private void btnMentes_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var result = saveFileDialog1.ShowDialog();
+                if (result != DialogResult.OK)
+                {
+                    return;
+                }
+                string fileName = saveFileDialog1.FileName;
+                using (var sw = new StreamWriter(fileName))
+                {
+                    if (!String.IsNullOrWhiteSpace(textBoxNev.Text))
+                    {
+                        sw.WriteLine(textBoxNev.Text);
+                    }
+                    else
+                    {
+                        MessageBox.Show("A név vagy üres vagy csak szóközöket tartalmaz!");
+                        textBoxNev.Focus();
+                        return;
+                    }
+                    if (dateTimePicker1.Value < DateTime.Now)
+                    {
+                        sw.WriteLine(dateTimePicker1.Value.ToString("yyyy/MM/dd"));
+                    }
+                    else
+                    {
+                        MessageBox.Show("A születési dátum nem lehet nagyobb a jelenlegi dátumnál!");
+                        dateTimePicker1.Focus();
+                        return;
+                    }
+                    if (rbtnFerfi.Checked)
+                    {
+                        sw.WriteLine("Férfi");
+                    }
+                    if (rbtnNo.Checked)
+                    {
+                        sw.WriteLine("Nő");
+                    }
+                    if (listBoxLista.SelectedIndex >= 0)
+                    {
+                        int db = 0;
+                        foreach (var item in listBoxLista.Items)
+                        {
+                            if (db == listBoxLista.SelectedIndex)
+                            {
+                                sw.WriteLine("Kedvenc: " + item);
+                                db++;
+                            }
+                            else
+                            {
+                                sw.WriteLine(item);
+                                db++;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Válasszon ki egy kedvenc hobbit.");
+                        listBoxLista.Focus();
+                        return;
+                    }
+                    sw.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Hiba a mentés során");
+            }
+        }
     }
     }

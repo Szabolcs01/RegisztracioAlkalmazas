@@ -71,6 +71,7 @@
             this.btnMentes.TabIndex = 2;
             this.btnMentes.Text = "Mentés";
             this.btnMentes.UseVisualStyleBackColor = true;
+            this.btnMentes.Click += new System.EventHandler(this.btnMentes_Click);
             // 
             // btnBetoltes
             // 
