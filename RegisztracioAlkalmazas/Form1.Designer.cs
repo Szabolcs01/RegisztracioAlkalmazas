@@ -80,6 +80,7 @@
             this.btnBetoltes.TabIndex = 3;
             this.btnBetoltes.Text = "Betöltés";
             this.btnBetoltes.UseVisualStyleBackColor = true;
+            this.btnBetoltes.Click += new System.EventHandler(this.btnBetoltes_Click);
             // 
             // textBoxNev
             // 
